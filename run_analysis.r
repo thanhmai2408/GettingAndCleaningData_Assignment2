@@ -57,5 +57,4 @@ tidy_dataset$Activity[which(tidy_dataset$Activity==3)] <- "WALKING_DOWNSTAIRS"
 tidy_dataset$Activity[which(tidy_dataset$Activity==4)] <- "SITTING"
 tidy_dataset$Activity[which(tidy_dataset$Activity==5)] <- "STANDING"
 tidy_dataset$Activity[which(tidy_dataset$Activity==6)] <- "LAYING"
-
-write.csv(tidy_dataset, "tidy_data_set.csv")
+write.table(tidy_dataset, "tidy_data_set.txt",row.names=FALSE)

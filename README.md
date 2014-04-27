@@ -7,4 +7,4 @@ This repo has three files:
 #How-to run:
 Put the run_analysis.R in the main working folder as well as the data files
 Run this command: source("run_analysis.R")
-It will generate the tidy data set
+It will generate the tidy data set (tidy_data_set.txt)
