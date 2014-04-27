@@ -22,12 +22,6 @@ X_combined <- X_combined[,grep(".*mean\\(\\)|.*std\\(\\)", names(X_combined))]
 
 #3. Uses descriptive activity names to name the activities in the data set
 activity_labels <- read.table("activity_labels.txt")
-Y_combined$V1[which(Y_combined$V1==1)] <- "WALKING"
-Y_combined$V1[which(Y_combined$V1==2)] <- "WALKING_UPSTAIRS"
-Y_combined$V1[which(Y_combined$V1==3)] <- "WALKING_DOWNSTAIRS"
-Y_combined$V1[which(Y_combined$V1==4)] <- "SITTING"
-Y_combined$V1[which(Y_combined$V1==5)] <- "STANDING"
-Y_combined$V1[which(Y_combined$V1==6)] <- "LAYING"
 
 #4. Appropriately labels the data set with descriptive activity names. 
 
@@ -45,8 +39,8 @@ for (subject in 1:numSubjects) {
 	for (activity in 1:numActivities) {
 		index = index+1
 		tidy_dataset[index, 1] = subject
-		tidy_dataset[index, 2] = activity_labels[activity,2]
-		tmp <- combined[which(combined$Subject== subject & combined$Activity==activity_labels[activity, 2]),3:ncol(combined)]
+		tidy_dataset[index, 2] = activity
+		tmp <- combined[which(combined$Subject== subject & combined$Activity==activity),3:ncol(combined)]
 		tidy_dataset[index,3:ncol(combined)] <- apply(tmp,2,mean)		
 	}
 }
@@ -57,4 +51,5 @@ tidy_dataset$Activity[which(tidy_dataset$Activity==3)] <- "WALKING_DOWNSTAIRS"
 tidy_dataset$Activity[which(tidy_dataset$Activity==4)] <- "SITTING"
 tidy_dataset$Activity[which(tidy_dataset$Activity==5)] <- "STANDING"
 tidy_dataset$Activity[which(tidy_dataset$Activity==6)] <- "LAYING"
+
 write.table(tidy_dataset, "tidy_data_set.txt",row.names=FALSE)
